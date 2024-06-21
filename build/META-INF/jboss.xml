@@ -1,0 +1,332 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE jboss PUBLIC "-//JBoss//DTD JBOSS 3.2//EN" "http://www.jboss.org/j2ee/dtd/jboss_3_2.dtd">
+
+<jboss>
+
+   <security-domain>java:/jaas/ciclops</security-domain>
+
+   <enterprise-beans>
+
+     <!--
+       To add beans that you have deployment descriptor info for, add
+       a file to your XDoclet merge directory called jboss-beans.xml that contains
+       the <session></session>, <entity></entity> and <message-driven></message-driven>
+       markup for those beans.
+     -->
+
+      <entity>
+         <ejb-name>Sample</ejb-name>
+         <local-jndi-name>ejb/ciclops/domain/Sample</local-jndi-name>
+
+        <method-attributes>
+            <method>
+              <method-name>getId</method-name>
+              <read-only>true</read-only>
+            </method>
+        </method-attributes>
+
+      </entity>
+      <entity>
+         <ejb-name>Error</ejb-name>
+         <local-jndi-name>ejb/ciclops/domain/Error</local-jndi-name>
+
+        <method-attributes>
+            <method>
+              <method-name>getId</method-name>
+              <read-only>true</read-only>
+            </method>
+            <method>
+              <method-name>getMessageAsObject</method-name>
+              <read-only>true</read-only>
+            </method>
+        </method-attributes>
+
+      </entity>
+      <entity>
+         <ejb-name>Principal</ejb-name>
+         <local-jndi-name>ejb/ciclops/domain/Pricipal</local-jndi-name>
+
+        <method-attributes>
+            <method>
+              <method-name>getUserName</method-name>
+              <read-only>true</read-only>
+            </method>
+            <method>
+              <method-name>getPassword</method-name>
+              <read-only>true</read-only>
+            </method>
+        </method-attributes>
+
+      </entity>
+      <entity>
+         <ejb-name>Category</ejb-name>
+         <local-jndi-name>ejb/ciclops/domain/Category</local-jndi-name>
+
+        <method-attributes>
+            <method>
+              <method-name>getId</method-name>
+              <read-only>true</read-only>
+            </method>
+        </method-attributes>
+
+      </entity>
+      <entity>
+         <ejb-name>Measurement</ejb-name>
+         <local-jndi-name>ejb/ciclops/domain/Measurement</local-jndi-name>
+
+        <method-attributes>
+            <method>
+              <method-name>getId</method-name>
+              <read-only>true</read-only>
+            </method>
+            <method>
+              <method-name>getData</method-name>
+              <read-only>true</read-only>
+            </method>
+            <method>
+              <method-name>getDomain</method-name>
+              <read-only>true</read-only>
+            </method>
+        </method-attributes>
+
+      </entity>
+      <entity>
+         <ejb-name>Role</ejb-name>
+         <local-jndi-name>ejb/ciclops/domain/Role</local-jndi-name>
+
+        <method-attributes>
+            <method>
+              <method-name>getId</method-name>
+              <read-only>true</read-only>
+            </method>
+            <method>
+              <method-name>getPricipal</method-name>
+              <read-only>true</read-only>
+            </method>
+            <method>
+              <method-name>getRole</method-name>
+              <read-only>true</read-only>
+            </method>
+            <method>
+              <method-name>getRoleGroup</method-name>
+              <read-only>true</read-only>
+            </method>
+        </method-attributes>
+
+      </entity>
+      <entity>
+         <ejb-name>Worker</ejb-name>
+         <local-jndi-name>ejb/ciclops/domain/Worker</local-jndi-name>
+
+        <method-attributes>
+            <method>
+              <method-name>getId</method-name>
+              <read-only>true</read-only>
+            </method>
+            <method>
+              <method-name>getHostName</method-name>
+              <read-only></read-only>
+            </method>
+            <method>
+              <method-name>getOperatingSystem</method-name>
+              <read-only>true</read-only>
+            </method>
+            <method>
+              <method-name>getVirtualMachine</method-name>
+              <read-only>true</read-only>
+            </method>
+            <method>
+              <method-name>getStatusString</method-name>
+              <read-only>true</read-only>
+            </method>
+            <method>
+              <method-name>getStatus</method-name>
+              <read-only>true</read-only>
+            </method>
+            <method>
+              <method-name>getStatusUpdatedAsLong</method-name>
+              <read-only>true</read-only>
+            </method>
+            <method>
+              <method-name>getSimulation</method-name>
+              <read-only>true</read-only>
+            </method>
+        </method-attributes>
+
+      </entity>
+      <entity>
+         <ejb-name>Code</ejb-name>
+         <local-jndi-name>ejb/ciclops/domain/Code</local-jndi-name>
+
+        <method-attributes>
+            <method>
+              <method-name>getClassName</method-name>
+              <read-only>true</read-only>
+            </method>
+            <method>
+              <method-name>getByteCode</method-name>
+              <read-only>true</read-only>
+            </method>
+        </method-attributes>
+
+      </entity>
+      <entity>
+         <ejb-name>DataSet</ejb-name>
+         <local-jndi-name>ejb/ciclops/domain/DataSet</local-jndi-name>
+
+        <method-attributes>
+            <method>
+              <method-name>getId</method-name>
+              <read-only>true</read-only>
+            </method>
+            <method>
+              <method-name>getName</method-name>
+              <read-only>true</read-only>
+            </method>
+            <method>
+              <method-name>getDescription</method-name>
+              <read-only>true</read-only>
+            </method>
+            <method>
+              <method-name>getData</method-name>
+              <read-only>true</read-only>
+            </method>
+            <method>
+              <method-name>getVersion</method-name>
+              <read-only>true</read-only>
+            </method>
+        </method-attributes>
+
+      </entity>
+      <entity>
+         <ejb-name>Simulation</ejb-name>
+         <local-jndi-name>ejb/ciclops/domain/Simulation</local-jndi-name>
+
+        <method-attributes>
+            <method>
+              <method-name>getId</method-name>
+              <read-only>true</read-only>
+            </method>
+            <method>
+              <method-name>getTotalSamples</method-name>
+              <read-only>true</read-only>
+            </method>
+            <method>
+              <method-name>getCompletedSamples</method-name>
+              <read-only></read-only>
+            </method>
+            <method>
+              <method-name>getStale</method-name>
+              <read-only>true</read-only>
+            </method>
+            <method>
+              <method-name>isStale</method-name>
+              <read-only>true</read-only>
+            </method>
+            <method>
+              <method-name>getConfigurationAsObject</method-name>
+              <read-only>true</read-only>
+            </method>
+            <method>
+              <method-name>getConfiguration</method-name>
+              <read-only>true</read-only>
+            </method>
+            <method>
+              <method-name>getXMLConfiguration</method-name>
+              <read-only>true</read-only>
+            </method>
+            <method>
+              <method-name>getErrors</method-name>
+              <read-only>true</read-only>
+            </method>
+        </method-attributes>
+
+      </entity>
+
+      <session>
+         <ejb-name>Supervisor</ejb-name>
+         <jndi-name>ejb/ciclops/services/Supervisor</jndi-name>
+
+        <method-attributes>
+        </method-attributes>
+      </session>
+      <session>
+         <ejb-name>Schema</ejb-name>
+         <jndi-name>ejb/ciclops/services/Schema</jndi-name>
+         <local-jndi-name>SchemaLocal</local-jndi-name>
+
+        <method-attributes>
+        </method-attributes>
+      </session>
+      <session>
+         <ejb-name>DataSetEditor</ejb-name>
+         <jndi-name>ejb/ciclops/services/DataSetEditor</jndi-name>
+
+        <method-attributes>
+        </method-attributes>
+      </session>
+      <session>
+         <ejb-name>Results</ejb-name>
+         <jndi-name>ejb/ciclops/services/Results</jndi-name>
+
+        <method-attributes>
+        </method-attributes>
+      </session>
+      <session>
+         <ejb-name>GUIDGenerator</ejb-name>
+         <local-jndi-name>ejb/OptiBench/services/GUIDGenerator</local-jndi-name>
+
+        <method-attributes>
+        </method-attributes>
+      </session>
+      <session>
+         <ejb-name>CategoryBrowser</ejb-name>
+         <jndi-name>ejb/ciclops/services/CategoryBrowser</jndi-name>
+
+        <method-attributes>
+        </method-attributes>
+      </session>
+      <session>
+         <ejb-name>CodeManager</ejb-name>
+         <jndi-name>ejb/ciclops/services/CodeManager</jndi-name>
+         <local-jndi-name>ejb/ciclops/services/CodeManagerLocal</local-jndi-name>
+
+        <method-attributes>
+        </method-attributes>
+      </session>
+      <session>
+         <ejb-name>Task</ejb-name>
+         <jndi-name>ejb/ciclops/services/Task</jndi-name>
+
+        <method-attributes>
+        </method-attributes>
+      </session>
+      <session>
+         <ejb-name>SimulationEditor</ejb-name>
+         <jndi-name>ejb/ciclops/services/SimulationEditor</jndi-name>
+
+        <method-attributes>
+        </method-attributes>
+      </session>
+      <session>
+         <ejb-name>Statistics</ejb-name>
+         <local-jndi-name>ejb/OptiBench/services/Statistics</local-jndi-name>
+
+        <method-attributes>
+        </method-attributes>
+      </session>
+
+   </enterprise-beans>
+
+   <resource-managers>
+   </resource-managers>
+
+  <container-configurations>
+	<container-configuration>
+         <container-name>Standard CMP 2.x EntityBean</container-name>
+         <commit-option>A</commit-option>
+         <sync-on-commit-only>true</sync-on-commit-only>
+	</container-configuration>
+</container-configurations>
+
+</jboss>

@@ -1,0 +1,550 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE jbosscmp-jdbc PUBLIC "-//JBoss//DTD JBOSSCMP-JDBC 3.2//EN" "http://www.jboss.org/j2ee/dtd/jbosscmp-jdbc_3_2.dtd">
+
+<jbosscmp-jdbc>
+   <defaults>
+     <datasource>java:/ciclopsDS</datasource>
+     <datasource-mapping>mySQL</datasource-mapping>
+   </defaults>
+
+   <enterprise-beans>
+
+     <!--
+       To add beans that you have deployment descriptor info for, add
+       a file to your XDoclet merge directory called jbosscmp-jdbc-beans.xml
+       that contains the <entity></entity> markup for those beans.
+     -->
+
+      <entity>
+         <ejb-name>Sample</ejb-name>
+	     <read-ahead>
+	        <strategy>on-find</strategy>
+			<page-size>100</page-size>
+         </read-ahead>
+         <table-name>sample</table-name>
+
+         <cmp-field>
+            <field-name>id</field-name>
+            <column-name>id</column-name>
+
+			<auto-increment/>
+        </cmp-field>
+
+	<entity-command name="mysql-get-generated-keys">
+	</entity-command>
+<!-- jboss 3.2 features -->
+<!-- optimistic locking does not express the exclusions needed -->
+      </entity>
+
+      <entity>
+         <ejb-name>Error</ejb-name>
+	     <read-ahead>
+	        <strategy>on-find</strategy>
+			<page-size>100</page-size>
+         </read-ahead>
+         <table-name>error</table-name>
+
+         <cmp-field>
+            <field-name>id</field-name>
+            <column-name>id</column-name>
+
+			<auto-increment/>
+        </cmp-field>
+         <cmp-field>
+            <field-name>messageAsObject</field-name>
+            <column-name>message</column-name>
+
+        </cmp-field>
+
+	<entity-command name="mysql-get-generated-keys">
+	</entity-command>
+<!-- jboss 3.2 features -->
+<!-- optimistic locking does not express the exclusions needed -->
+      </entity>
+
+      <entity>
+         <ejb-name>Principal</ejb-name>
+	     <read-ahead>
+	        <strategy>on-find</strategy>
+			<page-size>1000</page-size>
+         </read-ahead>
+         <table-name>Principals</table-name>
+
+         <cmp-field>
+            <field-name>userName</field-name>
+            <column-name>PrincipalID</column-name>
+
+        </cmp-field>
+         <cmp-field>
+            <field-name>password</field-name>
+            <column-name>Password</column-name>
+
+        </cmp-field>
+
+<!-- jboss 3.2 features -->
+<!-- optimistic locking does not express the exclusions needed -->
+      </entity>
+
+      <entity>
+         <ejb-name>Category</ejb-name>
+	     <read-ahead>
+	        <strategy>on-find</strategy>
+			<page-size>100</page-size>
+         </read-ahead>
+         <table-name>category</table-name>
+
+         <cmp-field>
+            <field-name>id</field-name>
+            <column-name>id</column-name>
+
+			<auto-increment/>
+        </cmp-field>
+         <cmp-field>
+            <field-name>name</field-name>
+            <column-name>name</column-name>
+
+        </cmp-field>
+
+	<entity-command name="mysql-get-generated-keys">
+	</entity-command>
+<!-- jboss 3.2 features -->
+<!-- optimistic locking does not express the exclusions needed -->
+      </entity>
+
+      <entity>
+         <ejb-name>Measurement</ejb-name>
+	     <read-ahead>
+	        <strategy>on-find</strategy>
+			<page-size>100</page-size>
+         </read-ahead>
+         <table-name>measurement</table-name>
+
+         <cmp-field>
+            <field-name>id</field-name>
+            <column-name>id</column-name>
+
+			<auto-increment/>
+        </cmp-field>
+         <cmp-field>
+            <field-name>data</field-name>
+            <column-name>data</column-name>
+
+        </cmp-field>
+         <cmp-field>
+            <field-name>domain</field-name>
+            <column-name>domain</column-name>
+
+        </cmp-field>
+
+	<entity-command name="mysql-get-generated-keys">
+	</entity-command>
+<!-- jboss 3.2 features -->
+<!-- optimistic locking does not express the exclusions needed -->
+      </entity>
+
+      <entity>
+         <ejb-name>Role</ejb-name>
+	     <read-ahead>
+	        <strategy>on-find</strategy>
+			<page-size>1000</page-size>
+         </read-ahead>
+         <table-name>Roles</table-name>
+
+         <cmp-field>
+            <field-name>id</field-name>
+            <column-name>id</column-name>
+
+			<auto-increment/>
+        </cmp-field>
+         <cmp-field>
+            <field-name>role</field-name>
+            <column-name>Role</column-name>
+
+        </cmp-field>
+         <cmp-field>
+            <field-name>roleGroup</field-name>
+            <column-name>RoleGroup</column-name>
+
+        </cmp-field>
+
+	<entity-command name="mysql-get-generated-keys">
+	</entity-command>
+<!-- jboss 3.2 features -->
+<!-- optimistic locking does not express the exclusions needed -->
+      </entity>
+
+      <entity>
+         <ejb-name>Worker</ejb-name>
+         <table-name>worker</table-name>
+
+         <cmp-field>
+            <field-name>id</field-name>
+            <column-name>id</column-name>
+
+			<auto-increment/>
+        </cmp-field>
+         <cmp-field>
+            <field-name>hostName</field-name>
+            <column-name>host_name</column-name>
+
+        </cmp-field>
+         <cmp-field>
+            <field-name>operatingSystem</field-name>
+            <column-name>operating_system</column-name>
+
+        </cmp-field>
+         <cmp-field>
+            <field-name>virtualMachine</field-name>
+            <column-name>vm</column-name>
+
+        </cmp-field>
+         <cmp-field>
+            <field-name>statusString</field-name>
+            <column-name>status</column-name>
+
+        </cmp-field>
+         <cmp-field>
+            <field-name>statusUpdatedAsLong</field-name>
+            <column-name>status_updated</column-name>
+
+        </cmp-field>
+
+	<entity-command name="mysql-get-generated-keys">
+	</entity-command>
+<!-- jboss 3.2 features -->
+<!-- optimistic locking does not express the exclusions needed -->
+      </entity>
+
+      <entity>
+         <ejb-name>Code</ejb-name>
+	     <read-ahead>
+	        <strategy>on-find</strategy>
+			<page-size>1000</page-size>
+         </read-ahead>
+         <table-name>code</table-name>
+
+         <cmp-field>
+            <field-name>className</field-name>
+            <column-name>class_name</column-name>
+
+        </cmp-field>
+         <cmp-field>
+            <field-name>byteCode</field-name>
+            <column-name>byte_code</column-name>
+
+        </cmp-field>
+
+<!-- jboss 3.2 features -->
+<!-- optimistic locking does not express the exclusions needed -->
+      </entity>
+
+      <entity>
+         <ejb-name>DataSet</ejb-name>
+         <table-name>data_set</table-name>
+
+         <cmp-field>
+            <field-name>id</field-name>
+            <column-name>id</column-name>
+
+			<auto-increment/>
+        </cmp-field>
+         <cmp-field>
+            <field-name>name</field-name>
+            <column-name>name</column-name>
+
+        </cmp-field>
+         <cmp-field>
+            <field-name>description</field-name>
+            <column-name>description</column-name>
+
+        </cmp-field>
+         <cmp-field>
+            <field-name>data</field-name>
+            <column-name>data</column-name>
+
+        </cmp-field>
+         <cmp-field>
+            <field-name>version</field-name>
+            <column-name>version</column-name>
+
+        </cmp-field>
+
+	<entity-command name="mysql-get-generated-keys">
+	</entity-command>
+<!-- jboss 3.2 features -->
+<!-- optimistic locking does not express the exclusions needed -->
+      </entity>
+
+      <entity>
+         <ejb-name>Simulation</ejb-name>
+         <table-name>simulation</table-name>
+
+         <cmp-field>
+            <field-name>id</field-name>
+            <column-name>id</column-name>
+
+			<auto-increment/>
+        </cmp-field>
+         <cmp-field>
+            <field-name>name</field-name>
+            <column-name>name</column-name>
+
+        </cmp-field>
+         <cmp-field>
+            <field-name>descriptionAsObject</field-name>
+            <column-name>description</column-name>
+
+        </cmp-field>
+         <cmp-field>
+            <field-name>totalSamples</field-name>
+            <column-name>total_samples</column-name>
+
+        </cmp-field>
+         <cmp-field>
+            <field-name>completedSamples</field-name>
+            <column-name>completed_samples</column-name>
+
+        </cmp-field>
+         <cmp-field>
+            <field-name>stale</field-name>
+            <column-name>stale</column-name>
+
+        </cmp-field>
+         <cmp-field>
+            <field-name>configurationAsObject</field-name>
+            <column-name>configuration</column-name>
+
+        </cmp-field>
+
+	<entity-command name="mysql-get-generated-keys">
+	</entity-command>
+<!-- jboss 3.2 features -->
+<!-- optimistic locking does not express the exclusions needed -->
+      </entity>
+
+   </enterprise-beans>
+
+  <relationships>
+    <ejb-relation>
+      <ejb-relation-name>CodeSimulationRelation</ejb-relation-name>
+      <relation-table-mapping>
+        <table-name>code_simulation</table-name>
+          <create-table>true</create-table>
+      </relation-table-mapping>
+
+      <ejb-relationship-role>
+          <ejb-relationship-role-name>CodeIsDependencyOfSimulation</ejb-relationship-role-name>
+          <fk-constraint>true</fk-constraint>
+          <key-fields>
+             <key-field>
+               <field-name>className</field-name>
+               <column-name>code</column-name>
+             </key-field>
+          </key-fields>
+
+      </ejb-relationship-role>
+      <ejb-relationship-role>
+          <ejb-relationship-role-name>SimulationDependsOnCode</ejb-relationship-role-name>
+          <fk-constraint>true</fk-constraint>
+          <key-fields>
+             <key-field>
+               <field-name>id</field-name>
+               <column-name>simulation</column-name>
+             </key-field>
+          </key-fields>
+
+      </ejb-relationship-role>
+    </ejb-relation>
+    <ejb-relation>
+      <ejb-relation-name>SimulationDataSetRelation</ejb-relation-name>
+      <relation-table-mapping>
+        <table-name>simulation_data_set</table-name>
+          <create-table>true</create-table>
+      </relation-table-mapping>
+
+      <ejb-relationship-role>
+          <ejb-relationship-role-name>DataSetIsDependencyOfSimulation</ejb-relationship-role-name>
+          <fk-constraint>true</fk-constraint>
+          <key-fields>
+             <key-field>
+               <field-name>id</field-name>
+               <column-name>data_set</column-name>
+             </key-field>
+          </key-fields>
+
+      </ejb-relationship-role>
+      <ejb-relationship-role>
+          <ejb-relationship-role-name>SimulationDependsOnDataSets</ejb-relationship-role-name>
+          <fk-constraint>true</fk-constraint>
+          <key-fields>
+             <key-field>
+               <field-name>id</field-name>
+               <column-name>simulation</column-name>
+             </key-field>
+          </key-fields>
+
+      </ejb-relationship-role>
+    </ejb-relation>
+    <ejb-relation>
+      <ejb-relation-name>CategorySimulationRelation</ejb-relation-name>
+
+      <ejb-relationship-role>
+          <ejb-relationship-role-name>SimulationInACategory</ejb-relationship-role-name>
+          <fk-constraint>false</fk-constraint>
+		  <key-fields/>
+
+      </ejb-relationship-role>
+      <ejb-relationship-role>
+          <ejb-relationship-role-name>CategoryContainsSimulations</ejb-relationship-role-name>
+          <key-fields>
+             <key-field>
+               <field-name>id</field-name>
+               <column-name>category</column-name>
+             </key-field>
+          </key-fields>
+
+      </ejb-relationship-role>
+    </ejb-relation>
+    <ejb-relation>
+      <ejb-relation-name>PricipalRoleRelation</ejb-relation-name>
+
+      <ejb-relationship-role>
+          <ejb-relationship-role-name>RoleOfPrincipal</ejb-relationship-role-name>
+          <fk-constraint>true</fk-constraint>
+		  <key-fields/>
+
+      </ejb-relationship-role>
+      <ejb-relationship-role>
+          <ejb-relationship-role-name>PrincipalInRole</ejb-relationship-role-name>
+          <key-fields>
+             <key-field>
+               <field-name>userName</field-name>
+               <column-name>PrincipalID</column-name>
+             </key-field>
+          </key-fields>
+
+      </ejb-relationship-role>
+    </ejb-relation>
+    <ejb-relation>
+      <ejb-relation-name>CategoryDataSetRelation</ejb-relation-name>
+
+      <ejb-relationship-role>
+          <ejb-relationship-role-name>DataSetInACategory</ejb-relationship-role-name>
+          <fk-constraint>false</fk-constraint>
+		  <key-fields/>
+
+      </ejb-relationship-role>
+      <ejb-relationship-role>
+          <ejb-relationship-role-name>CategoryContainsDataSets</ejb-relationship-role-name>
+          <key-fields>
+             <key-field>
+               <field-name>id</field-name>
+               <column-name>category</column-name>
+             </key-field>
+          </key-fields>
+
+      </ejb-relationship-role>
+    </ejb-relation>
+    <ejb-relation>
+      <ejb-relation-name>SimulationSampleRelation</ejb-relation-name>
+
+      <ejb-relationship-role>
+          <ejb-relationship-role-name>SamplesOfSimulation</ejb-relationship-role-name>
+          <fk-constraint>true</fk-constraint>
+		  <key-fields/>
+
+      </ejb-relationship-role>
+      <ejb-relationship-role>
+          <ejb-relationship-role-name>SimulationHasSamples</ejb-relationship-role-name>
+          <key-fields>
+             <key-field>
+               <field-name>id</field-name>
+               <column-name>simulation</column-name>
+             </key-field>
+          </key-fields>
+
+      </ejb-relationship-role>
+    </ejb-relation>
+    <ejb-relation>
+      <ejb-relation-name>CategoryCategoryRelation</ejb-relation-name>
+
+      <ejb-relationship-role>
+          <ejb-relationship-role-name>CategoryIsASubCategory</ejb-relationship-role-name>
+          <fk-constraint>false</fk-constraint>
+		  <key-fields/>
+
+      </ejb-relationship-role>
+      <ejb-relationship-role>
+          <ejb-relationship-role-name>CategoryHasSubCategories</ejb-relationship-role-name>
+          <key-fields>
+             <key-field>
+               <field-name>id</field-name>
+               <column-name>parent</column-name>
+             </key-field>
+          </key-fields>
+
+      </ejb-relationship-role>
+    </ejb-relation>
+    <ejb-relation>
+      <ejb-relation-name>SampleMeasurementRelation</ejb-relation-name>
+
+      <ejb-relationship-role>
+          <ejb-relationship-role-name>MeasurementsInSample</ejb-relationship-role-name>
+          <fk-constraint>true</fk-constraint>
+		  <key-fields/>
+
+      </ejb-relationship-role>
+      <ejb-relationship-role>
+          <ejb-relationship-role-name>SampleOfMeasurements</ejb-relationship-role-name>
+          <key-fields>
+             <key-field>
+               <field-name>id</field-name>
+               <column-name>sample</column-name>
+             </key-field>
+          </key-fields>
+
+      </ejb-relationship-role>
+    </ejb-relation>
+    <ejb-relation>
+      <ejb-relation-name>SimulationErrorRelation</ejb-relation-name>
+
+      <ejb-relationship-role>
+          <ejb-relationship-role-name>ErrorInSimulation</ejb-relationship-role-name>
+          <fk-constraint>true</fk-constraint>
+		  <key-fields/>
+
+      </ejb-relationship-role>
+      <ejb-relationship-role>
+          <ejb-relationship-role-name>SimulationMayHaveErrors</ejb-relationship-role-name>
+          <key-fields>
+             <key-field>
+               <field-name>id</field-name>
+               <column-name>simulation</column-name>
+             </key-field>
+          </key-fields>
+
+      </ejb-relationship-role>
+    </ejb-relation>
+    <ejb-relation>
+      <ejb-relation-name>SimulationWorkerRelation</ejb-relation-name>
+
+      <ejb-relationship-role>
+          <ejb-relationship-role-name>WorkerWorksOnSimulation</ejb-relationship-role-name>
+          <fk-constraint>false</fk-constraint>
+		  <key-fields/>
+
+      </ejb-relationship-role>
+      <ejb-relationship-role>
+          <ejb-relationship-role-name>SimulationIsWorkedOnByWorkers</ejb-relationship-role-name>
+          <key-fields>
+             <key-field>
+               <field-name>id</field-name>
+               <column-name>simulation</column-name>
+             </key-field>
+          </key-fields>
+
+      </ejb-relationship-role>
+    </ejb-relation>
+  </relationships>
+
+</jbosscmp-jdbc>

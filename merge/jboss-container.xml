@@ -1,0 +1,7 @@
+<container-configurations>
+	<container-configuration>
+         <container-name>Standard CMP 2.x EntityBean</container-name>
+         <commit-option>A</commit-option>
+         <sync-on-commit-only>true</sync-on-commit-only>
+	</container-configuration>
+</container-configurations>

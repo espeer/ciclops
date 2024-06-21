@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE attributes PUBLIC "-//NetBeans//DTD DefaultAttributes 1.0//EN" "http://www.netbeans.org/dtds/attributes-1_0.dtd">
+<attributes version="1.0">
+    <fileobject name="BrowserDialog.java">
+        <attr name="class_dependency_javax.swing.JDialog" stringvalue="BrowserDialog"/>
+    </fileobject>
+    <fileobject name="CategoryBrowserDialog.java">
+        <attr name="class_dependency_javax.swing.JDialog" stringvalue="CategoryBrowserDialog"/>
+    </fileobject>
+    <fileobject name="ConfigBuilderDialog.java">
+        <attr name="class_dependency_javax.swing.JDialog" stringvalue="ConfigBuilderDialog"/>
+        <attr name="class_dependency_javax.swing.event.TableModelListener" stringvalue="ConfigBuilderDialog"/>
+    </fileobject>
+    <fileobject name="DataSetDialog.java">
+        <attr name="class_dependency_javax.swing.JDialog" stringvalue="DataSetDialog"/>
+    </fileobject>
+    <fileobject name="ErrorBrowser.java">
+        <attr name="class_dependency_javax.swing.JDialog" stringvalue="ErrorBrowser"/>
+    </fileobject>
+    <fileobject name="Main.java">
+        <attr name="class_dependency_javax.swing.JFrame" stringvalue="Main"/>
+    </fileobject>
+    <fileobject name="MultipleSelector.java">
+        <attr name="class_dependency_javax.swing.JDialog" stringvalue="MultipleSelector"/>
+    </fileobject>
+    <fileobject name="PropertyEditor.java">
+        <attr name="class_dependency_java.awt.event.ActionListener" stringvalue="PropertyEditor"/>
+        <attr name="class_dependency_javax.swing.AbstractCellEditor" stringvalue="PropertyEditor"/>
+        <attr name="class_dependency_javax.swing.table.TableCellEditor" stringvalue="PropertyEditor"/>
+    </fileobject>
+    <fileobject name="PropertyRenderer.java">
+        <attr name="class_dependency_javax.swing.JLabel" stringvalue="PropertyRenderer"/>
+        <attr name="class_dependency_javax.swing.table.TableCellRenderer" stringvalue="PropertyRenderer"/>
+    </fileobject>
+    <fileobject name="SimulationDialog.java">
+        <attr name="class_dependency_javax.swing.JDialog" stringvalue="SimulationDialog"/>
+    </fileobject>
+</attributes>

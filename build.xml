@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project basedir="." default="all" name="ciclops">
+
+    <property name="package" value="za.ac.up.cs.cirg.ciclops"/>
+
+    <property name="debug" value="true"/>
+    
+    <property name="source.dir" value="src"/>
+    <property name="merge.dir" value="merge"/>
+    <property name="generated.dir" value="generated"/>
+    <property name="build.dir" value="build"/>
+    <property name="deploy.dir" value="deploy"/>
+    <property name="web.dir" value="web"/>
+    
+    <property name="security.domain" value="java:/jaas/ciclops"/>
+    <property name="database.source" value="java:/ciclopsDS"/> 
+
+    <!-- <property name="database.mapping" value="PostgreSQL 7.2"/> -->
+    <property name="database.mapping" value="mySQL"/>
+    
+    <property name="ejb.cmp.version" value="2.x"/>
+    <property name="jboss.version" value="3.2"/>
+    
+    <property name="xdoclet.lib.dir" value="/usr/share/xdoclet/lib/"/>
+    <property name="j2ee.lib.dir" value="/opt/sun-j2ee-1.3.1/lib/"/>
+    <property name="apache-commons-logging.lib.dir" value="/usr/share/commons-logging/lib"/>
+    <property name="log4j.lib.dir" value="/usr/share/log4j/lib"/>
+
+    <property name="struts.lib.dir" value="${web.dir}/WEB-INF/lib"/>
+    
+    <path id="classpath">
+        <fileset dir="${xdoclet.lib.dir}">
+            <include name="*.jar"/>
+        </fileset>
+        <fileset dir="${j2ee.lib.dir}">
+            <include name="*.jar"/>
+        </fileset>
+        <fileset dir="${apache-commons-logging.lib.dir}">
+            <include name="*.jar"/>
+        </fileset>
+        <fileset dir="${log4j.lib.dir}">
+            <include name="*.jar"/>
+        </fileset>
+        <fileset dir="${struts.lib.dir}">
+            <include name="*.jar"/>
+        </fileset>
+        <pathelement location="${build.dir}"/>
+    </path>
+    
+    <target depends="jars" name="all"/>
+
+    <target name="clean">
+        <delete includeemptydirs="true">
+            <fileset dir="${generated.dir}">
+                <include name="**/*"/>
+            </fileset>
+        </delete>      
+
+        <delete includeemptydirs="true">
+            <fileset dir="${build.dir}">
+                <include name="**/*"/>
+            </fileset>
+        </delete>
+        
+        <delete includeemptydirs="true">
+            <fileset dir="${web.dir}/WEB-INF/classes">
+                <include name="**/*"/>
+            </fileset>
+        </delete>
+        
+        <delete includeemptydirs="true">
+            <fileset dir="${deploy.dir}">
+                <include name="**/*"/>
+                <exclude name="META-INF/application.xml"/>
+            </fileset>
+        </delete>
+    </target>
+    
+    <target name="xdoclet">
+        <taskdef classname="xdoclet.modules.ejb.EjbDocletTask" classpathref="classpath" name="ejbdoclet"/>
+    
+        <ejbdoclet destdir="${generated.dir}">
+            <fileset dir="${source.dir}">
+                <include name="**/*Bean.java"/>
+            </fileset>
+                                    
+            <entitypk/>
+            
+            <remoteinterface/>
+            <localinterface/>
+
+            <homeinterface/>
+            <localhomeinterface/>
+
+            <utilobject cacheHomes="yes"/>           
+            
+            <deploymentdescriptor destdir="${build.dir}/META-INF"/>
+            <jboss datasource="${database.source}" destdir="${build.dir}/META-INF" typemapping="${database.mapping}" version="${jboss.version}" securityDomain="${security.domain}" mergeDir="${merge.dir}"/>                 
+
+<!-- 
+            <jbossnet destdir="${build.dir}/META-INF" prefix="ob" targetNamespace="http://cirg.cs.up.ac.za/CiClops" webDeploymentName="CiClops web services"/> 
+-->
+	    
+        </ejbdoclet>       
+        <taskdef classname="xdoclet.modules.web.WebDocletTask" classpathref="classpath" name="webdoclet"/>
+           
+        <webdoclet destdir="${web.dir}/WEB-INF">
+            <fileset dir="${source.dir}">
+                <include name="**/*"/>
+            </fileset>
+            
+            <strutsconfigxml/>
+	    <!--
+            <deploymentdescriptor validatexml="true" distributable="false" displayname="CiClops"/>
+	    -->
+        </webdoclet>
+
+    </target>
+    
+    <target depends="xdoclet" name="compile">
+        <mkdir dir="${build.dir}"/>
+        <mkdir dir="${web.dir}/WEB-INF/classes"/>
+    
+        <!-- note: order is important here -->
+        <javac classpathref="classpath" debug="${debug}" destdir="${build.dir}" optimize="true" sourcepath="${generated.dir}" srcdir="${source.dir}">
+            <exclude name="**/web/*"/>
+        </javac>
+
+        <javac classpathref="classpath" debug="${debug}" destdir="${build.dir}" optimize="true" srcdir="${generated.dir}"/>
+            
+        <javac classpathref="classpath" debug="${debug}" destdir="${web.dir}/WEB-INF/classes" optimize="true" srcdir="${source.dir}">
+            <include name="**/web/*"/>
+        </javac>
+        
+    </target>
+    
+    <target depends="compile" name="jars">
+        <jar destfile="${build.dir}/CiClops.jar">
+            <fileset dir="${build.dir}">
+                <include name="META-INF/*.xml"/>
+                <exclude name="META-INF/web-service.xml"/>
+            </fileset>
+            <fileset dir="${build.dir}">
+                <include name="**/*.class"/>
+                <exclude name="**/bootstrap/*.class"/>
+            </fileset>
+        </jar>
+        
+        <jar destfile="${build.dir}/CiClops-worker.jar">
+           	<fileset dir="${build.dir}">
+           		<include name="**/cilib/*.class"/>
+           	  	<include name="**/worker/*.class"/>
+           	  	<include name="**/services/CodeManager*.class"/>
+           	  	<include name="**/services/Supervisor*.class"/>
+           	  	<include name="**/services/JobNotFoundException.class"/>
+           		<include name="**/model/WorkerModel.class"/>
+           		<include name="**/model/MeasurementModel.class"/>
+           	</fileset>
+           	<fileset file="jndi.properties"/>
+        </jar>
+    	
+        <jar destfile="${build.dir}/CiClops-client.jar">
+           	<fileset dir="${build.dir}">
+           		<include name="**/awtextra/*.class"/>
+           	  	<include name="**/client/*.class"/>
+           	  	<include name="**/services/*.class"/>
+           		<include name="**/model/*.class"/>
+           	</fileset>
+           	<fileset file="jndi.properties"/>
+        </jar>
+    	
+        
+        <!--
+        <jar destfile="${web.dir}/jars/webclient.jar">
+        	<fileset dir="${build.dir}">
+        		<include name="**/webclient/*.class"/>
+        		<include name="**/model/*.class" />
+        		<include name="**/model/configuration/*.class"/>
+           	  	<include name="**/services/*Remote*.class"/>
+        	</fileset>
+        </jar>
+
+		<signjar jar="${web.dir}/jars/webclient.jar" alias="optibench" storepass="qazerti" keystore="optibench.ks"/>
+        -->
+        
+        <war destfile="${build.dir}/CiClops.war" webxml="${web.dir}/WEB-INF/web.xml">
+            <fileset dir="${web.dir}">
+	      		<exclude name="WEB-INF/web.xml"/>
+            </fileset>
+        </war>
+        
+        <jar destfile="${build.dir}/CiClops.wsr">
+            <fileset dir="${build.dir}">
+                <include name="META-INF/web-service.xml"/>
+            </fileset>
+        </jar>
+        
+        <ear appxml="${deploy.dir}/META-INF/application.xml" destfile="${deploy.dir}/CiClops.ear">
+            <fileset dir="${build.dir}">
+                <include name="CiClops.jar"/>
+                <include name="CiClops.war"/>
+                <include name="CiClops.wsr"/>
+            </fileset>
+        </ear>
+    </target>
+    
+</project>
